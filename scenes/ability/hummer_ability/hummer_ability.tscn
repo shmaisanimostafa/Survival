@@ -1,21 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccrhuqosd8me"]
+[gd_scene load_steps=7 format=3 uid="uid://ccrhuqosd8me"]
 
 [ext_resource type="Texture2D" uid="uid://25t2yi7au6ic" path="res://scenes/ability/hummer_ability/hummer.png" id="1_kew6y"]
 
 [sub_resource type="Animation" id="Animation_cqlak"]
 resource_name = "Hit"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.349066, -0.523599, -0.872665, -1.39626]
-}
 
 [sub_resource type="Animation" id="Animation_wwwaa"]
 length = 0.001
@@ -42,6 +30,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_mkl7u"]
@@ -86,6 +86,18 @@ tracks/2/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wo4dh"]
 _data = {
@@ -93,6 +105,9 @@ _data = {
 "RESET": SubResource("Animation_wwwaa"),
 "swing": SubResource("Animation_mkl7u")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ceecu"]
+radius = 13.0384
 
 [node name="HummerAbility" type="Node2D"]
 
@@ -105,3 +120,12 @@ autoplay = "swing"
 libraries = {
 "": SubResource("AnimationLibrary_wo4dh")
 }
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5, 6)
+shape = SubResource("CircleShape2D_ceecu")
+disabled = true
