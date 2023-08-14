@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://gpg51pp3uvth"]
+[gd_scene load_steps=6 format=3 uid="uid://gpg51pp3uvth"]
 
-[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_ja18a"]
+[ext_resource type="Script" path="res://scenes/game_objects/player/player.gd" id="1_ja18a"]
 [ext_resource type="PackedScene" uid="uid://b7lq62mm4ijwd" path="res://scenes/ability/hummer_ability_controller/hummer_ability_controller.tscn" id="2_2jcrb"]
-[ext_resource type="Texture2D" uid="uid://dqsotpju8lwd" path="res://scenes/player/player0.png" id="2_tnjrj"]
+[ext_resource type="Texture2D" uid="uid://dqsotpju8lwd" path="res://scenes/game_objects/player/player0.png" id="2_tnjrj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aug4l"]
+radius = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1en7b"]
 radius = 6.0
@@ -15,6 +18,15 @@ script = ExtResource("1_ja18a")
 [node name="AbilityManager" type="Node" parent="."]
 
 [node name="HummerAbilityController" parent="AbilityManager" instance=ExtResource("2_2jcrb")]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_aug4l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_tnjrj")
