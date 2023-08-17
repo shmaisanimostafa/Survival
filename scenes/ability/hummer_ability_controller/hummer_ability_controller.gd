@@ -2,7 +2,7 @@ extends Node
 
 const MAX_RANGE = 150
 @export var hummer_ability : PackedScene 
-
+var damage = 5
 
 func _on_timer_timeout():
 	var player = get_tree().get_first_node_in_group("player") as Node2D
@@ -22,8 +22,9 @@ func _on_timer_timeout():
 		return a_distance < b_distance
 	)
 		
-	var hummer_instance = hummer_ability.instantiate() as Node2D
+	var hummer_instance = hummer_ability.instantiate() as HummerAbility
 	player.get_parent().add_child(hummer_instance)
+	hummer_instance.hitbox_component.damage = damage
 	hummer_instance.global_position = enemies[0].global_position
 	hummer_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
 
