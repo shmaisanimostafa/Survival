@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmgqrh6wlw1fv"]
+[gd_scene load_steps=11 format=3 uid="uid://cmgqrh6wlw1fv"]
 
 [ext_resource type="PackedScene" uid="uid://gpg51pp3uvth" path="res://scenes/game_objects/player/player.tscn" id="1_154a3"]
 [ext_resource type="PackedScene" uid="uid://82qmqbhs08qs" path="res://scenes/ui/arena_time_ui.tscn" id="1_d743v"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://vb0ttuh56mws" path="res://scenes/managers/arena_time_manager.tscn" id="2_3xfkm"]
 [ext_resource type="PackedScene" uid="uid://b5tvyfgjc8yhi" path="res://scenes/game_objects/game_camera/game_camera.tscn" id="3_ly5os"]
 [ext_resource type="PackedScene" uid="uid://cgy887pxugpg1" path="res://scenes/managers/experience_manager.tscn" id="4_758cl"]
+[ext_resource type="PackedScene" uid="uid://42768gxt5l5d" path="res://scenes/managers/upgrade_manager.tscn" id="4_kcdff"]
 [ext_resource type="PackedScene" uid="uid://bdxwijwajdwvv" path="res://scenes/managers/enemy_manager.tscn" id="5_5n80o"]
+[ext_resource type="Resource" uid="uid://saukrmfnly7v" path="res://resources/upgrades/hummer_rate.tres" id="5_kr3mh"]
 
 [node name="Main" type="Node"]
 
@@ -17,9 +19,13 @@ arena_time_manager = NodePath("../ArenaTimeManager")
 [node name="ExperienceBar" parent="." node_paths=PackedStringArray("experience_manager") instance=ExtResource("1_k0kuo")]
 experience_manager = NodePath("../ExperienceManager")
 
-[node name="ArenaTimeManager" parent="." instance=ExtResource("2_3xfkm")]
-
 [node name="EnemyManager" parent="." instance=ExtResource("5_5n80o")]
+
+[node name="UpgradeManager" parent="." node_paths=PackedStringArray("experience_manager") instance=ExtResource("4_kcdff")]
+upgrade_pool = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("5_kr3mh")])
+experience_manager = NodePath("../ExperienceManager")
+
+[node name="ArenaTimeManager" parent="." instance=ExtResource("2_3xfkm")]
 
 [node name="ExperienceManager" parent="." instance=ExtResource("4_758cl")]
 
@@ -33,3 +39,5 @@ layer_0/tile_data = PackedInt32Array(1638444, 65536, 4, 1572908, 0, 4, 1507372, 
 [node name="Player" parent="." instance=ExtResource("1_154a3")]
 position = Vector2(325, 185)
 metadata/_edit_lock_ = true
+
+[connection signal="level_up" from="ExperienceManager" to="UpgradeManager" method="_on_experience_manager_level_up"]

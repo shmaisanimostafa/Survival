@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://saukrmfnly7v"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_x5676"]
+
+[resource]
+script = ExtResource("1_x5676")
+id = "hummer_rate"
+name = "Hummer Quickness"
+description = "Increases hummer attack rate by 10%"
