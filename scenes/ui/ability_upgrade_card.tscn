@@ -19,3 +19,5 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "write some description here as you wirte more, it wraps"
 autowrap_mode = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
