@@ -1,8 +1,17 @@
 extends Node
 
 const MAX_RANGE = 150
+
 @export var hummer_ability : PackedScene 
+
 var damage = 5
+var base_wait_time
+
+
+func _ready():
+	base_wait_time = $Timer.wait_time
+	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
+
 
 func _on_timer_timeout():
 	var player = get_tree().get_first_node_in_group("player") as Node2D
@@ -30,3 +39,13 @@ func _on_timer_timeout():
 
 	var enemy_direction = enemies[0].global_position - hummer_instance.global_position
 	hummer_instance.rotation = enemy_direction.angle()
+
+
+func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
+	if upgrade.id != "hummer_rate":
+		return
+	
+	var percent_reduction = current_upgrades["hummer_rate"]["quantity"] * .5
+	$Timer.wait_time = base_wait_time * (1-percent_reduction)
+	$Timer.start()
+
