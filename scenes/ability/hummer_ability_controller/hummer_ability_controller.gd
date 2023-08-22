@@ -32,7 +32,8 @@ func _on_timer_timeout():
 	)
 		
 	var hummer_instance = hummer_ability.instantiate() as HummerAbility
-	player.get_parent().add_child(hummer_instance)
+	var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
+	foreground_layer.add_child(hummer_instance)
 	hummer_instance.hitbox_component.damage = damage
 	hummer_instance.global_position = enemies[0].global_position
 	hummer_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
