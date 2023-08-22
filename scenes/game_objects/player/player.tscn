@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://gpg51pp3uvth"]
+[gd_scene load_steps=8 format=3 uid="uid://gpg51pp3uvth"]
 
 [ext_resource type="Script" path="res://scenes/game_objects/player/player.gd" id="1_ja18a"]
 [ext_resource type="PackedScene" uid="uid://b7lq62mm4ijwd" path="res://scenes/ability/hummer_ability_controller/hummer_ability_controller.tscn" id="2_2jcrb"]
+[ext_resource type="PackedScene" uid="uid://ddgo84v5h00c1" path="res://scenes/component/health_component.tscn" id="2_nt8tu"]
 [ext_resource type="Texture2D" uid="uid://dqsotpju8lwd" path="res://scenes/game_objects/player/player0.png" id="2_tnjrj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aug4l"]
 radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f8oac"]
+radius = 7.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1en7b"]
 radius = 6.0
@@ -15,18 +19,32 @@ collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_ja18a")
 
+[node name="HealthComponent" parent="." instance=ExtResource("2_nt8tu")]
+
 [node name="AbilityManager" type="Node" parent="."]
 
 [node name="HummerAbilityController" parent="AbilityManager" instance=ExtResource("2_2jcrb")]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="DamageIntervalTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="PickupArea2D" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 0
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea2D"]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_aug4l")
+
+[node name="CollisionArea2D" type="Area2D" parent="."]
+position = Vector2(0, -6)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
+shape = SubResource("CircleShape2D_f8oac")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_tnjrj")
@@ -35,3 +53,7 @@ offset = Vector2(0, -8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_1en7b")
+
+[connection signal="timeout" from="DamageIntervalTimer" to="." method="_on_damage_interval_timer_timeout"]
+[connection signal="body_entered" from="CollisionArea2D" to="." method="_on_collision_area_2d_body_entered"]
+[connection signal="body_exited" from="CollisionArea2D" to="." method="_on_collision_area_2d_body_exited"]
