@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://gpg51pp3uvth"]
+[gd_scene load_steps=11 format=3 uid="uid://gpg51pp3uvth"]
 
 [ext_resource type="Script" path="res://scenes/game_objects/player/player.gd" id="1_ja18a"]
 [ext_resource type="PackedScene" uid="uid://b7lq62mm4ijwd" path="res://scenes/ability/hummer_ability_controller/hummer_ability_controller.tscn" id="2_2jcrb"]
 [ext_resource type="PackedScene" uid="uid://ddgo84v5h00c1" path="res://scenes/component/health_component.tscn" id="2_nt8tu"]
 [ext_resource type="Texture2D" uid="uid://dqsotpju8lwd" path="res://scenes/game_objects/player/player0.png" id="2_tnjrj"]
+[ext_resource type="PackedScene" uid="uid://cwetem2873ljf" path="res://scenes/ability/axe_ability_controller/axe_ability_controller.tscn" id="4_ks86g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo2mt"]
 bg_color = Color(0.247059, 0.14902, 0.192157, 1)
@@ -35,6 +36,8 @@ script = ExtResource("1_ja18a")
 [node name="AbilityManager" type="Node" parent="."]
 
 [node name="HummerAbilityController" parent="AbilityManager" instance=ExtResource("2_2jcrb")]
+
+[node name="AxeAbilityController" parent="AbilityManager" instance=ExtResource("4_ks86g")]
 
 [node name="DamageIntervalTimer" type="Timer" parent="."]
 wait_time = 0.5

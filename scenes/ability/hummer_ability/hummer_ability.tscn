@@ -121,6 +121,7 @@ libraries = {
 }
 
 [node name="HitBoxComponent" parent="." instance=ExtResource("2_oiqs4")]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 position = Vector2(5, 6)

@@ -49,4 +49,3 @@ func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Diction
 	var percent_reduction = current_upgrades["hummer_rate"]["quantity"] * .5
 	$Timer.wait_time = base_wait_time * (1-percent_reduction)
 	$Timer.start()
-
