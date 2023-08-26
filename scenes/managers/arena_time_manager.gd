@@ -12,10 +12,6 @@ const DIFFICULTY_INTERVAL = 5
 var arena_difficulty = 0
 
 
-func _ready():
-	pass
-
-
 func _process(_delta):
 	var next_time_target = timer.wait_time - (arena_difficulty + 1) * DIFFICULTY_INTERVAL
 	if timer.time_left <= next_time_target:

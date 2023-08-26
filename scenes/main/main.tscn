@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmgqrh6wlw1fv"]
+[gd_scene load_steps=12 format=3 uid="uid://cmgqrh6wlw1fv"]
 
 [ext_resource type="PackedScene" uid="uid://gpg51pp3uvth" path="res://scenes/game_objects/player/player.tscn" id="1_154a3"]
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_d3ql0"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://cgy887pxugpg1" path="res://scenes/managers/experience_manager.tscn" id="4_758cl"]
 [ext_resource type="PackedScene" uid="uid://42768gxt5l5d" path="res://scenes/managers/upgrade_manager.tscn" id="4_kcdff"]
 [ext_resource type="PackedScene" uid="uid://bdxwijwajdwvv" path="res://scenes/managers/enemy_manager.tscn" id="5_5n80o"]
-[ext_resource type="Resource" uid="uid://saukrmfnly7v" path="res://resources/upgrades/hummer_rate.tres" id="5_kr3mh"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_d3ql0")
@@ -26,11 +25,10 @@ experience_manager = NodePath("../ExperienceManager")
 [node name="EnemyManager" parent="." node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("5_5n80o")]
 arena_time_manager = NodePath("../ArenaTimeManager")
 
-[node name="UpgradeManager" parent="." node_paths=PackedStringArray("experience_manager") instance=ExtResource("4_kcdff")]
-upgrade_pool = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("5_kr3mh")])
-experience_manager = NodePath("../ExperienceManager")
-
 [node name="ArenaTimeManager" parent="." instance=ExtResource("2_3xfkm")]
+
+[node name="UpgradeManager" parent="." node_paths=PackedStringArray("experience_manager") instance=ExtResource("4_kcdff")]
+experience_manager = NodePath("../ExperienceManager")
 
 [node name="ExperienceManager" parent="." instance=ExtResource("4_758cl")]
 
@@ -50,5 +48,3 @@ position = Vector2(325, 185)
 metadata/_edit_lock_ = true
 
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]
-
-[connection signal="level_up" from="ExperienceManager" to="UpgradeManager" method="_on_experience_manager_level_up"]

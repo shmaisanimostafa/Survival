@@ -6,14 +6,21 @@ extends Node
 
 var current_upgrades = {}
 
+func pick_upgrades():
+	var chosen_upgrades: Array[AbilityUpgrade] = []
+	var filtered_upgrades = upgrade_pool.duplicate()
+	for i in 2:
+		var chosen_upgrade = filtered_upgrades.pick_random() as AbilityUpgrade
+		filtered_upgrades = filtered_upgrades.filter(func (upgrade): return upgrade.id != chosen_upgrade.id)
+		chosen_upgrades.append(chosen_upgrade)
+	return chosen_upgrades
 
 func _on_experience_manager_level_up(_current_level: int):
-	var chosen_upgrade = upgrade_pool.pick_random() as AbilityUpgrade
-	if chosen_upgrade == null:
-		return
+
 	var upgrade_screen_instance = upgrade_screen_scene.instantiate()
 	add_child(upgrade_screen_instance)
-	upgrade_screen_instance.set_ability_upgrades([chosen_upgrade] as Array[AbilityUpgrade])
+	var chosen_upgrades = pick_upgrades()
+	upgrade_screen_instance.set_ability_upgrades(chosen_upgrades as Array[AbilityUpgrade])
 	upgrade_screen_instance.upgrade_selected.connect(on_upgrade_selected)
 
 
