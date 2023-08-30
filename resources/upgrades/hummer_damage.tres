@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://l62mvx34jt22"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_bj0qy"]
+
+[resource]
+script = ExtResource("1_bj0qy")
+id = "hummer_damage"
+max_quantity = 0
+name = "Hummer Damage"
+description = "Increases hummer damage by 15%"
