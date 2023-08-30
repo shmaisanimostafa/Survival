@@ -32,6 +32,10 @@ mouse_cursor/custom_image="res://crosshair.png"
 
 project/assembly_name="Survival"
 
+[gui]
+
+theme/custom="res://resources/theme/theme.tres"
+
 [input]
 
 move_right={
