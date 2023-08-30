@@ -1,12 +1,53 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5ln8btj8sh5q"]
+[gd_scene load_steps=16 format=3 uid="uid://b5ln8btj8sh5q"]
 
 [ext_resource type="PackedScene" uid="uid://ddgo84v5h00c1" path="res://scenes/component/health_component.tscn" id="1_b0n4w"]
 [ext_resource type="Script" path="res://scenes/game_objects/wizard_enemy/wizard_enemy.gd" id="1_rnfol"]
 [ext_resource type="PackedScene" uid="uid://dausvgwf50yqm" path="res://scenes/component/velocity_component.tscn" id="2_57luf"]
 [ext_resource type="PackedScene" uid="uid://dkeybmvtwpe5p" path="res://scenes/component/death_component.tscn" id="2_i0mi3"]
 [ext_resource type="PackedScene" uid="uid://djfk2c2e772mg" path="res://scenes/component/hurt_box_component.tscn" id="3_6upax"]
+[ext_resource type="PackedScene" uid="uid://c1qscc37psy6p" path="res://scenes/component/hit_flash_component.tscn" id="3_tgt0y"]
 [ext_resource type="Texture2D" uid="uid://cdmjuf01dpn1i" path="res://scenes/game_objects/wizard_enemy/wizard_enemy.png" id="4_8xhmd"]
 [ext_resource type="PackedScene" uid="uid://dpedhcwlwbmmy" path="res://scenes/component/vial_drop_component.tscn" id="4_37you"]
+[ext_resource type="Shader" path="res://scenes/component/hit_flash_component.gdshader" id="4_48skg"]
+
+[sub_resource type="Animation" id="Animation_1mxfy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_fba60"]
 resource_name = "walk"
@@ -67,50 +108,16 @@ tracks/3/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_1mxfy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/Sprite2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uk3u1"]
 _data = {
 "RESET": SubResource("Animation_1mxfy"),
 "walk": SubResource("Animation_fba60")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_08b8b"]
+resource_local_to_scene = true
+shader = ExtResource("4_48skg")
+shader_parameter/lerp_percent = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wsc1n"]
 radius = 8.0
@@ -131,6 +138,11 @@ libraries = {
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_b0n4w")]
 max_health = 20.0
+
+[node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("3_tgt0y")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
+hit_flash_material = SubResource("ShaderMaterial_08b8b")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_57luf")]
 max_speed = 60
