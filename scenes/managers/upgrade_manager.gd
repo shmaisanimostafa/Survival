@@ -10,13 +10,13 @@ var upgrade_axe = preload("res://resources/upgrades/axe.tres")
 var upgrade_axe_damage = preload("res://resources/upgrades/axe_damage.tres")
 var upgrade_hummer_rate = preload("res://resources/upgrades/hummer_rate.tres")
 var upgrade_hummer_damage = preload("res://resources/upgrades/hummer_damage.tres")
-
+var upgrade_player_speed = preload("res://resources/upgrades/player_speed.tres")
 
 func _ready():
 	upgrade_pool.add_item(upgrade_axe, 10)
 	upgrade_pool.add_item(upgrade_hummer_rate, 10)
 	upgrade_pool.add_item(upgrade_hummer_damage, 10)
-	
+	upgrade_pool.add_item(upgrade_player_speed, 5)
 
 func pick_upgrades():
 	var chosen_upgrades: Array[AbilityUpgrade] = []

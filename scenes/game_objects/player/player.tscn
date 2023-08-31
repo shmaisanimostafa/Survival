@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://gpg51pp3uvth"]
+[gd_scene load_steps=14 format=3 uid="uid://gpg51pp3uvth"]
 
 [ext_resource type="Script" path="res://scenes/game_objects/player/player.gd" id="1_ja18a"]
 [ext_resource type="PackedScene" uid="uid://b7lq62mm4ijwd" path="res://scenes/ability/hummer_ability_controller/hummer_ability_controller.tscn" id="2_2jcrb"]
 [ext_resource type="PackedScene" uid="uid://ddgo84v5h00c1" path="res://scenes/component/health_component.tscn" id="2_nt8tu"]
 [ext_resource type="Texture2D" uid="uid://dqsotpju8lwd" path="res://scenes/game_objects/player/player0.png" id="2_tnjrj"]
+[ext_resource type="PackedScene" uid="uid://dausvgwf50yqm" path="res://scenes/component/velocity_component.tscn" id="3_gvylg"]
 
 [sub_resource type="Animation" id="Animation_p1xy5"]
 length = 0.001
@@ -122,6 +123,10 @@ libraries = {
 }
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_nt8tu")]
+
+[node name="VelocityComponent" parent="." instance=ExtResource("3_gvylg")]
+max_speed = 90
+acceleration = 25.0
 
 [node name="Abilities" type="Node" parent="."]
 
