@@ -1,10 +1,10 @@
 extends CanvasLayer
 
+
 @onready var panel = %Panel
 
 
 func _ready():
-	
 	panel.pivot_offset = panel.size / 2
 	var tween = create_tween()
 	tween.tween_property(panel, "scale", Vector2.ZERO, 0)

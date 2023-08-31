@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://scenes/component/death_component.gd" id="1_bgkxg"]
 [ext_resource type="Texture2D" uid="uid://o55m7l70qd75" path="res://scenes/game_objects/basic_enemy/basic_enemy.png" id="1_uv228"]
 [ext_resource type="PackedScene" uid="uid://bcibqxek4q6i0" path="res://scenes/component/random_stream_player_2d_component.tscn" id="3_s5eko"]
-[ext_resource type="AudioStream" uid="uid://brp7jehj4pm81" path="res://assets/audio/footstep_carpet_000.ogg" id="4_yy7j3"]
-[ext_resource type="AudioStream" uid="uid://bjxn0ee77wssj" path="res://assets/audio/footstep_carpet_001.ogg" id="5_stkfn"]
-[ext_resource type="AudioStream" uid="uid://dcme5xvqjmj7m" path="res://assets/audio/footstep_carpet_002.ogg" id="6_ewr6h"]
-[ext_resource type="AudioStream" uid="uid://ba0kilakef75j" path="res://assets/audio/footstep_carpet_003.ogg" id="7_eotkv"]
-[ext_resource type="AudioStream" uid="uid://bxepk6uhxy1c6" path="res://assets/audio/footstep_carpet_004.ogg" id="8_xpxo7"]
+[ext_resource type="AudioStream" uid="uid://brp7jehj4pm81" path="res://assets/audio/impact/footstep_carpet_000.ogg" id="4_yy7j3"]
+[ext_resource type="AudioStream" uid="uid://bjxn0ee77wssj" path="res://assets/audio/impact/footstep_carpet_001.ogg" id="5_stkfn"]
+[ext_resource type="AudioStream" uid="uid://dcme5xvqjmj7m" path="res://assets/audio/impact/footstep_carpet_002.ogg" id="6_ewr6h"]
+[ext_resource type="AudioStream" uid="uid://ba0kilakef75j" path="res://assets/audio/impact/footstep_carpet_003.ogg" id="7_eotkv"]
+[ext_resource type="AudioStream" uid="uid://bxepk6uhxy1c6" path="res://assets/audio/impact/footstep_carpet_004.ogg" id="8_xpxo7"]
 
 [sub_resource type="Animation" id="Animation_23knd"]
 length = 0.001
