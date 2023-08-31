@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" path="res://scenes/ui/ability_upgrade_card.gd" id="1_t6qh7"]
 [ext_resource type="PackedScene" uid="uid://c7efqmb4grryb" path="res://scenes/component/random_stream_player_component.tscn" id="2_lkj4k"]
-[ext_resource type="AudioStream" uid="uid://dxcl0d8ilg3lv" path="res://assets/audio/switch1.ogg" id="3_g4y3y"]
-[ext_resource type="AudioStream" uid="uid://doesw1rppr5ns" path="res://assets/audio/switch2.ogg" id="4_jorc2"]
-[ext_resource type="AudioStream" uid="uid://o771qri875yx" path="res://assets/audio/switch3.ogg" id="5_u2up8"]
-[ext_resource type="AudioStream" uid="uid://humudsqveop" path="res://assets/audio/switch4.ogg" id="6_la36a"]
-[ext_resource type="AudioStream" uid="uid://gv1147ly1xdj" path="res://assets/audio/switch5.ogg" id="7_kbo8h"]
-[ext_resource type="AudioStream" uid="uid://djxtb3dfpyjm6" path="res://assets/audio/switch6.ogg" id="8_p50nf"]
-[ext_resource type="AudioStream" uid="uid://fck3dil6n1d5" path="res://assets/audio/switch7.ogg" id="9_k8sov"]
-[ext_resource type="AudioStream" uid="uid://fbfw1oyhbo0o" path="res://assets/audio/switch8.ogg" id="10_ecfgx"]
-[ext_resource type="AudioStream" uid="uid://caj7gbmx5bwbd" path="res://assets/audio/switch9.ogg" id="11_04fxi"]
-[ext_resource type="AudioStream" uid="uid://dpq4q4sfgbwhe" path="res://assets/audio/switch10.ogg" id="12_d8hq4"]
+[ext_resource type="AudioStream" uid="uid://dxcl0d8ilg3lv" path="res://assets/audio/ui sounds/switch1.ogg" id="3_2jsmw"]
+[ext_resource type="AudioStream" uid="uid://doesw1rppr5ns" path="res://assets/audio/ui sounds/switch2.ogg" id="4_efif3"]
+[ext_resource type="AudioStream" uid="uid://o771qri875yx" path="res://assets/audio/ui sounds/switch3.ogg" id="5_m0u3m"]
+[ext_resource type="AudioStream" uid="uid://humudsqveop" path="res://assets/audio/ui sounds/switch4.ogg" id="6_corjf"]
+[ext_resource type="AudioStream" uid="uid://gv1147ly1xdj" path="res://assets/audio/ui sounds/switch5.ogg" id="7_5n65x"]
+[ext_resource type="AudioStream" uid="uid://djxtb3dfpyjm6" path="res://assets/audio/ui sounds/switch6.ogg" id="8_y3yx3"]
+[ext_resource type="AudioStream" uid="uid://fck3dil6n1d5" path="res://assets/audio/ui sounds/switch7.ogg" id="9_dpm6a"]
+[ext_resource type="AudioStream" uid="uid://fbfw1oyhbo0o" path="res://assets/audio/ui sounds/switch8.ogg" id="10_wfc2p"]
+[ext_resource type="AudioStream" uid="uid://caj7gbmx5bwbd" path="res://assets/audio/ui sounds/switch9.ogg" id="11_rnxbh"]
+[ext_resource type="AudioStream" uid="uid://dpq4q4sfgbwhe" path="res://assets/audio/ui sounds/switch10.ogg" id="12_urq34"]
 
 [sub_resource type="Animation" id="Animation_w3piv"]
 length = 0.001
@@ -209,11 +209,11 @@ pivot_offset = Vector2(75, 75)
 script = ExtResource("1_t6qh7")
 
 [node name="ClickPlayerComponent2" parent="." instance=ExtResource("2_lkj4k")]
-streams = Array[AudioStream]([ExtResource("3_g4y3y"), ExtResource("4_jorc2"), ExtResource("5_u2up8"), ExtResource("6_la36a"), ExtResource("7_kbo8h"), ExtResource("8_p50nf"), ExtResource("9_k8sov"), ExtResource("10_ecfgx"), ExtResource("11_04fxi"), ExtResource("12_d8hq4")])
+streams = Array[AudioStream]([ExtResource("3_2jsmw"), ExtResource("4_efif3"), ExtResource("5_m0u3m"), ExtResource("6_corjf"), ExtResource("7_5n65x"), ExtResource("8_y3yx3"), ExtResource("9_dpm6a"), ExtResource("10_wfc2p"), ExtResource("11_rnxbh"), ExtResource("12_urq34")])
 
 [node name="HoverPlayerComponent" parent="." instance=ExtResource("2_lkj4k")]
 volume_db = -10.0
-streams = Array[AudioStream]([ExtResource("3_g4y3y"), ExtResource("4_jorc2"), ExtResource("5_u2up8"), ExtResource("6_la36a"), ExtResource("7_kbo8h"), ExtResource("8_p50nf"), ExtResource("9_k8sov"), ExtResource("10_ecfgx"), ExtResource("11_04fxi"), ExtResource("12_d8hq4")])
+streams = Array[AudioStream]([ExtResource("3_2jsmw"), ExtResource("4_efif3"), ExtResource("5_m0u3m"), ExtResource("6_corjf"), ExtResource("7_5n65x"), ExtResource("8_y3yx3"), ExtResource("9_dpm6a"), ExtResource("10_wfc2p"), ExtResource("11_rnxbh"), ExtResource("12_urq34")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

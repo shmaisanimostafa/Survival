@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxdc3f7g3jbq6"]
+[gd_scene load_steps=9 format=3 uid="uid://cxdc3f7g3jbq6"]
 
 [ext_resource type="Script" path="res://scenes/ui/end_screen.gd" id="1_ib3ov"]
+[ext_resource type="AudioStream" uid="uid://de3kipsp3d83v" path="res://assets/audio/Jingle_victory.ogg" id="2_tdiwi"]
 [ext_resource type="PackedScene" uid="uid://bjjgq8ct561nc" path="res://scenes/ui/sound_button.tscn" id="2_yhpo1"]
+[ext_resource type="AudioStream" uid="uid://cde3maeikvcd1" path="res://assets/audio/Jingle_defeat.ogg" id="3_m1wh8"]
 
 [sub_resource type="Animation" id="Animation_jopho"]
 length = 0.001
@@ -68,6 +70,16 @@ autoplay = "in"
 libraries = {
 "": SubResource("AnimationLibrary_3wjad")
 }
+
+[node name="VictoryStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tdiwi")
+volume_db = -5.0
+bus = &"sfx"
+
+[node name="DefeatStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_m1wh8")
+volume_db = -5.0
+bus = &"sfx"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -139,3 +151,6 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Quit
 "
+
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
