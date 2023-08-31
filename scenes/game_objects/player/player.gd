@@ -19,7 +19,7 @@ func _ready():
 	update_health_display()
 
 
-func _process(delta):
+func _process(_delta):
 	var movement_vector = get_movement_vector()
 	var direction = movement_vector.normalized()
 	velocity_component.accelerate_in_direction(direction)
@@ -67,6 +67,7 @@ func _on_damage_interval_timer_timeout():
 func _on_health_component_health_changed():
 	GameEvents.emit_player_damaged()
 	update_health_display()
+	$HitRandomStreamPlayer.play_random()
 
 
 func on_ability_upgrade_added(ability_upgrade: AbilityUpgrade, current_upgrades: Dictionary):

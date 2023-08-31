@@ -27,6 +27,8 @@ func _on_area_2d_area_entered(_area):
 	tween.chain()
 	tween.tween_callback(collect)
 	
+	$RandomStreamPlayer2DComponent.play_random()
+	
 
 func collect():
 	GameEvents.emit_experience_vial_collected(1)

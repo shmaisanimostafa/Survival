@@ -1,10 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://gpg51pp3uvth"]
+[gd_scene load_steps=20 format=3 uid="uid://gpg51pp3uvth"]
 
 [ext_resource type="Script" path="res://scenes/game_objects/player/player.gd" id="1_ja18a"]
 [ext_resource type="PackedScene" uid="uid://b7lq62mm4ijwd" path="res://scenes/ability/hummer_ability_controller/hummer_ability_controller.tscn" id="2_2jcrb"]
 [ext_resource type="PackedScene" uid="uid://ddgo84v5h00c1" path="res://scenes/component/health_component.tscn" id="2_nt8tu"]
 [ext_resource type="Texture2D" uid="uid://dqsotpju8lwd" path="res://scenes/game_objects/player/player0.png" id="2_tnjrj"]
 [ext_resource type="PackedScene" uid="uid://dausvgwf50yqm" path="res://scenes/component/velocity_component.tscn" id="3_gvylg"]
+[ext_resource type="PackedScene" uid="uid://bcibqxek4q6i0" path="res://scenes/component/random_stream_player_2d_component.tscn" id="6_8wxs3"]
+[ext_resource type="AudioStream" uid="uid://b36mk3tb280cy" path="res://assets/audio/impactMining_000.ogg" id="7_3kvsg"]
+[ext_resource type="AudioStream" uid="uid://c5bgtxw0tnyh3" path="res://assets/audio/impactMining_001.ogg" id="8_g0ksj"]
+[ext_resource type="AudioStream" uid="uid://ba3pw33itigg7" path="res://assets/audio/impactMining_002.ogg" id="9_jsokq"]
+[ext_resource type="AudioStream" uid="uid://ncjy1tpousiy" path="res://assets/audio/impactMining_003.ogg" id="10_j0ub7"]
+[ext_resource type="AudioStream" uid="uid://b6p47amcuh7qr" path="res://assets/audio/impactMining_004.ogg" id="11_pwdjn"]
 
 [sub_resource type="Animation" id="Animation_p1xy5"]
 length = 0.001
@@ -179,6 +185,9 @@ offset = Vector2(0, -8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_1en7b")
+
+[node name="HitRandomStreamPlayer" parent="." instance=ExtResource("6_8wxs3")]
+streams = Array[AudioStream]([ExtResource("7_3kvsg"), ExtResource("8_g0ksj"), ExtResource("9_jsokq"), ExtResource("10_j0ub7"), ExtResource("11_pwdjn")])
 
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="timeout" from="DamageIntervalTimer" to="." method="_on_damage_interval_timer_timeout"]
