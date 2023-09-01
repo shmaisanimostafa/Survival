@@ -104,7 +104,7 @@ libraries = {
 [node name="HealthComponent" parent="." instance=ExtResource("3_2y307")]
 
 [node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_sc521")]
-drop_percent = 0.0
+drop_percent = 0.35
 health_component = NodePath("../HealthComponent")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_d4gma")]
