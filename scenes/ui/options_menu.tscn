@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c0321qa0q8d6n" path="res://scenes/ui/vignette.tscn" id="4_bth24"]
 
 [node name="OptionsMenu" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_iisyf")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -100,6 +101,7 @@ text = "Back
 "
 
 [node name="Vignette" parent="." instance=ExtResource("4_bth24")]
+layer = 3
 
 [connection signal="changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SfxOptionContainer/SfxSlider" to="." method="_on_sfx_slider_changed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/WindowOptionContainer/WindowButton" to="." method="_on_window_button_pressed"]
