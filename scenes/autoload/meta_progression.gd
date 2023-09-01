@@ -43,7 +43,9 @@ func save():
 	var file = FileAccess.open(Save_File_Path, FileAccess.WRITE)
 	file.store_var(save_data)
 
-
-
+func get_upgrade_count(upgrade_id: String):
+	if save_data["meta_upgrades"].has(upgrade_id):
+		return save_data["meta_upgrades"][upgrade_id]["quantity"]
+	return 0
 
 

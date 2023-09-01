@@ -11,7 +11,17 @@ func _ready():
 	
 	(health_component as HealthComponent).died.connect(on_died)
 	
+	
 func on_died():
+	var adjusted_drop_percent = drop_percent
+	
+	var experience_gain_upgrade_count = MetaProgression.get_upgrade_count("experience_gain")
+	if experience_gain_upgrade_count > 0:
+		adjusted_drop_percent += 1
+	
+	if randf() > adjusted_drop_percent:
+		return
+	
 	# Used for debugging puposes 
 	if vial_scene == null :
 		return
