@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://bfs7xytdriru8"]
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://pnuflmmxb5rr"]
 
-[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_25ikh"]
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_djno0"]
 
 [resource]
-script = ExtResource("1_25ikh")
-id = "hummer_rate"
-max_quantity = 5
-name = "Hummer Quickness"
-description = "Increases hummer attack rate by 10%"
+script = ExtResource("1_djno0")
+id = "player_speed"
+max_quantity = 2
+name = "Move Speed"
+description = "Increases player movement speed by 10%."

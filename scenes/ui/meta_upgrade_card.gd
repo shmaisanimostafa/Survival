@@ -1,14 +1,18 @@
 extends PanelContainer
 
-@onready var count_label = %CountLabel
-@onready var progress_bar = %ProgressBar
-@onready var name_label: Label = %NameLabel
+@onready var name_label: Label = $%NameLabel
+@onready var description_label: Label = $%DescriptionLabel
+@onready var progress_bar = $%ProgressBar
+@onready var purchase_button = $%PurchaseButton
 @onready var progress_label = %ProgressLabel
-@onready var purchase_button = %PurchaseButton
-@onready var description_label: Label = %DescriptionLabel
+@onready var count_label = $%CountLabel
 
 
-var upgrade : MetaUpgrade
+var upgrade: MetaUpgrade
+
+
+func _ready():
+	purchase_button.pressed.connect(on_purchase_pressed)
 
 
 func set_meta_upgrade(upgrade: MetaUpgrade):
@@ -20,11 +24,12 @@ func set_meta_upgrade(upgrade: MetaUpgrade):
 
 func update_progress():
 	var current_quantity = 0
-	if MetaProgression.save_data.has(upgrade.id):
+	if MetaProgression.save_data["meta_upgrades"].has(upgrade.id):
 		current_quantity = MetaProgression.save_data["meta_upgrades"][upgrade.id]["quantity"]
+
 	var is_maxed = current_quantity >= upgrade.max_quantity
 	var currency = MetaProgression.save_data["meta_upgrade_currency"]
-	var percent =  currency / upgrade.experience_cost
+	var percent = currency / upgrade.experience_cost
 	percent = min(percent, 1)
 	progress_bar.value = percent
 	purchase_button.disabled = percent < 1 || is_maxed
@@ -36,10 +41,9 @@ func update_progress():
 
 func select_card():
 	$AnimationPlayer.play("selected")
-	$AnimationPlayer.animation_finished
 
 
-func _on_purchase_button_pressed():
+func on_purchase_pressed():
 	if upgrade == null:
 		return
 	MetaProgression.add_meta_upgrade(upgrade)
@@ -47,3 +51,5 @@ func _on_purchase_button_pressed():
 	MetaProgression.save()
 	get_tree().call_group("meta_upgrade_card", "update_progress")
 	$AnimationPlayer.play("selected")
+
+

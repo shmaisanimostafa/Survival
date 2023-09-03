@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://btpors21pu4ne"]
+[gd_scene load_steps=6 format=3 uid="uid://o2u7g05bqs4x"]
 
-[ext_resource type="Script" path="res://scenes/ui/pause_menu.gd" id="1_vwf1u"]
-[ext_resource type="PackedScene" uid="uid://bjjgq8ct561nc" path="res://scenes/ui/sound_button.tscn" id="3_mtdew"]
+[ext_resource type="Script" path="res://scenes/ui/pause_menu.gd" id="1_ckvn8"]
+[ext_resource type="PackedScene" uid="uid://dmu80fq6rvrp" path="res://scenes/ui/sound_button.tscn" id="3_xe5h1"]
 
-[sub_resource type="Animation" id="Animation_t364o"]
+[sub_resource type="Animation" id="Animation_7imu1"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -18,7 +18,7 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_b5ruj"]
+[sub_resource type="Animation" id="Animation_mectc"]
 resource_name = "default"
 length = 0.15
 step = 0.05
@@ -35,15 +35,20 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_km3b3"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8iiss"]
 _data = {
-"RESET": SubResource("Animation_t364o"),
-"default": SubResource("Animation_b5ruj")
+"RESET": SubResource("Animation_7imu1"),
+"default": SubResource("Animation_mectc")
 }
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("1_vwf1u")
+script = ExtResource("1_ckvn8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8iiss")
+}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -61,7 +66,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
-custom_minimum_size = Vector2(180, 140)
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -91,29 +96,17 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="ResumeButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_mtdew")]
+[node name="ResumeButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_xe5h1")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Resume
-"
+text = "Resume"
 
-[node name="OptionsButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_mtdew")]
+[node name="OptionsButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_xe5h1")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Options
-"
+text = "Options"
 
-[node name="QuitButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_mtdew")]
+[node name="QuitButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_xe5h1")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Quit to Menu
-"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_km3b3")
-}
-
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+text = "Quit to Menu"

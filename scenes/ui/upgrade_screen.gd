@@ -19,7 +19,8 @@ func set_ability_upgrades(upgrades: Array[AbilityUpgrade]):
 		card_instance.set_ability_upgrade(upgrade)
 		card_instance.play_in(delay)
 		card_instance.selected.connect(on_upgrade_selected.bind(upgrade))
-		delay = .2
+		delay += .2
+
 
 func on_upgrade_selected(upgrade: AbilityUpgrade):
 	upgrade_selected.emit(upgrade)

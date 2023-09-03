@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxdc3f7g3jbq6"]
+[gd_scene load_steps=9 format=3 uid="uid://7axbopas4824"]
 
-[ext_resource type="Script" path="res://scenes/ui/end_screen.gd" id="1_ib3ov"]
-[ext_resource type="AudioStream" uid="uid://de3kipsp3d83v" path="res://assets/audio/Jingle_victory.ogg" id="2_tdiwi"]
-[ext_resource type="PackedScene" uid="uid://bjjgq8ct561nc" path="res://scenes/ui/sound_button.tscn" id="2_yhpo1"]
-[ext_resource type="AudioStream" uid="uid://cde3maeikvcd1" path="res://assets/audio/Jingle_defeat.ogg" id="3_m1wh8"]
+[ext_resource type="Script" path="res://scenes/ui/end_screen.gd" id="1_xf2cy"]
+[ext_resource type="PackedScene" uid="uid://dmu80fq6rvrp" path="res://scenes/ui/sound_button.tscn" id="2_cswyq"]
+[ext_resource type="AudioStream" uid="uid://bxfchkjnlc7av" path="res://assets/audio/jingles_victory.ogg" id="2_dmg40"]
+[ext_resource type="AudioStream" uid="uid://j67adia0x2ml" path="res://assets/audio/jingles_defeat.ogg" id="3_jqah1"]
 
-[sub_resource type="Animation" id="Animation_jopho"]
+[sub_resource type="Animation" id="Animation_momv2"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_1yiq3"]
+[sub_resource type="Animation" id="Animation_qsx0v"]
 resource_name = "in"
 length = 0.15
 step = 0.05
@@ -37,7 +37,7 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_d6iph"]
+[sub_resource type="Animation" id="Animation_g8sap"]
 resource_name = "out"
 length = 0.15
 step = 0.05
@@ -54,30 +54,30 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3wjad"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7no0y"]
 _data = {
-"RESET": SubResource("Animation_jopho"),
-"in": SubResource("Animation_1yiq3"),
-"out": SubResource("Animation_d6iph")
+"RESET": SubResource("Animation_momv2"),
+"in": SubResource("Animation_qsx0v"),
+"out": SubResource("Animation_g8sap")
 }
 
 [node name="EndScreen" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("1_ib3ov")
+script = ExtResource("1_xf2cy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "in"
 libraries = {
-"": SubResource("AnimationLibrary_3wjad")
+"": SubResource("AnimationLibrary_7no0y")
 }
 
 [node name="VictoryStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_tdiwi")
+stream = ExtResource("2_dmg40")
 volume_db = -5.0
 bus = &"sfx"
 
 [node name="DefeatStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_m1wh8")
+stream = ExtResource("3_jqah1")
 volume_db = -5.0
 bus = &"sfx"
 
@@ -96,13 +96,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="PanelContainer" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 8
@@ -110,11 +110,11 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 16
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"BlueOutlineLabel"
@@ -123,26 +123,21 @@ text = "Victory"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DescriptionLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"BlueOutlineLabel"
-text = "You Won!"
-vertical_alignment = 1
+text = "You won!"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ContinueButton" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_yhpo1")]
+[node name="ContinueButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_cswyq")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Continue"
 
-[node name="QuitButton" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_yhpo1")]
+[node name="QuitButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_cswyq")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Quit to Menu
-"
-
-[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+text = "Quit to Menu"

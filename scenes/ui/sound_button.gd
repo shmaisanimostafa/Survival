@@ -1,5 +1,9 @@
 extends Button
 
 
-func _on_pressed():
+func _ready():
+	pressed.connect(on_pressed)
+	
+
+func on_pressed():
 	$RandomStreamPlayerComponent.play_random()
